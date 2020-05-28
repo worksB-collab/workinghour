@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.app.Service
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.net.wifi.SupplicantState
@@ -37,6 +38,18 @@ class MyService : Service() {
             Log.d("fff", "No Connection")
             Toast.makeText(applicationContext, "No Connection", Toast.LENGTH_SHORT).show()
         }
+    }
+
+}
+class Reciver: BroadcastReceiver() {
+    override fun onReceive(context: Context?, intent: Intent?) {
+        if(intent?.action.equals(Intent.ACTION_BOOT_COMPLETED)){
+            val serviceIntent = Intent(context, MyService::class.java)
+            context?.startService(serviceIntent)
+        }
+        val activityIntent = Intent(context, MainActivity::class.java)
+        activityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        context?.startActivity(activityIntent)
     }
 
 }

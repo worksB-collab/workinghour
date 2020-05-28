@@ -2,10 +2,8 @@ package com.example.myapplication
 
 
 import android.Manifest
-import android.app.Activity
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.app.*
+import android.content.BroadcastReceiver
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -17,6 +15,7 @@ import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.IBinder
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
@@ -46,8 +45,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         grantPermm()
-        startService(this.intent)
         mainAct = this
+//        val intent = Intent(this, MyService.class)
+//        startService(this.intent)
     }
 
     override fun startService(service: Intent?): ComponentName? {
